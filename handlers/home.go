@@ -15,7 +15,7 @@ type HomeResponse struct {
 
 func HomeHandler(s server.Server) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("COntent-Type", "application/json") // Le dice al cliente que lo que le esta respondiendo es un json.
+		w.Header().Set("Content-Type", "application/json") // Le dice al cliente que lo que le esta respondiendo es un json.
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(HomeResponse{
 			Message: "Welcome to Platzi Go",

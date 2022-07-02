@@ -19,7 +19,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	PORT := os.Getenv("PORT") // Las variables tienen que ser inguales a las del archivo .env
+	PORT := os.Getenv("PORT") // Las variables tienen que ser iguales a las del archivo .env
 	JWT_SECRET := os.Getenv("JWT_SECRET")
 	DATABASE_URL := os.Getenv("DATABASE_URL")
 
