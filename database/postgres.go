@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"log"
 
+	_ "github.com/lib/pq" // Con el "_" importa la libreria aunque no la use el programa.
 	"platzi.com/go/rest-ws/models"
 )
 
@@ -27,12 +28,12 @@ func (repo *PostgresRepository) InsertUser(ctx context.Context, user *models.Use
 	return err
 }
 
-func (repo *PostgresRepository) GetUserById(ctx context.Context, id int64) (*models.User, error) {
+func (repo *PostgresRepository) GetUserById(ctx context.Context, id string) (*models.User, error) {
 	rows, err := repo.db.QueryContext(ctx, "SELECT id, email FROM users WHERE id = $1", id)
-	// QueryCOntext lo que hace es hacer una consulta a la base de datos de postgres.
+	// QueryContext lo que hace es hacer una consulta a la base de datos de postgres.
 
 	defer func() {
-		err = rows.Close() // Cerramos ellector para que la base de datos no quede con una conexion abierta.
+		err = rows.Close() // Cerramos el lector para que la base de datos no quede con una conexion abierta.
 		if err != nil {
 			log.Fatal(nil)
 		}
